@@ -31,9 +31,9 @@ const UserForm = ({ values, errors, touched, isSubmitting, status }) => {
       <div className="ui fluid input">
         {touched.height && errors.height && <p>{errors.height}</p>}
         <Field
-          type="number"
+          type="text"
           name="height"
-          placeholder="height in cm"
+          placeholder="dont forget to add cm!"
           className="ui fluid input"
         />
       </div>
@@ -54,13 +54,11 @@ const FormikApp = withFormik({
     };
   },
 
-  //   validationSchema: Yup.object().shape({
-  //     name: Yup.string().required(),
-  //     age: Yup.number()
-  //       .age("age is not valid")
-  //       .required("age is required"),
-  //     height: Yup.number().required("A height is required")
-  //   }),
+  validationSchema: Yup.object().shape({
+    name: Yup.string().required(),
+    age: Yup.string().required("age is required"),
+    height: Yup.number().required("A height is required")
+  }),
 
   handleSubmit(values, { setErrors, resetForm, setSubmitting, setStatus }) {
     axios
